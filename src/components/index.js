@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import './styles.css'
 import axios from 'axios';
 import apiKey from './config';
 
@@ -13,7 +14,7 @@ class UserInput extends Component {
     })
       .then(res => {
         this.setState({ response : res })
-        console.log(this.state.response);
+        console.log(this.state.response.data.data);
       })
       .catch(err => {
         console.error(err)
@@ -22,13 +23,15 @@ class UserInput extends Component {
   render() {
     return (
       <Fragment>
-        <form>
-          <input type="text" onChange={this.onTextChange} />
+        <h1>Gif App</h1>
+        <form className="form">
+          <input className="input" placeholder="Input text here" type="text" 
+            onChange={this.onTextChange} 
+          />
         </form>
         <div>
-          {/* <img alt="no gif" /> */}
-          {this.state.response >= 1 && (
-              <img alt="gif" />
+          {this.state.response.data && (
+              <img alt="gif" src={this.state.response.data.data.images} />
             )}
         </div>
       </Fragment>
