@@ -14,7 +14,6 @@ class UserInput extends Component {
     })
       .then(res => {
         this.setState({ response : res })
-        console.log(this.state.response.data.data);
       })
       .catch(err => {
         console.error(err)
@@ -31,7 +30,7 @@ class UserInput extends Component {
         </form>
         <div>
           {this.state.response.data && (
-              <img alt="gif" src={this.state.response.data.data.images} />
+              <img alt="gif" src={this.state.response.data.data.url} />
             )}
         </div>
       </Fragment>
